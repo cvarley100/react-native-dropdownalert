@@ -294,7 +294,7 @@ export default class DropdownAlert extends Component {
       );
     }
   };
-  closeDirectly() {
+  closeDirectly(updateStatusBar = true) {
     if (this.state.isOpen) {
       if (this._closeTimeoutId != null) {
         clearTimeout(this._closeTimeoutId);
@@ -303,7 +303,7 @@ export default class DropdownAlert extends Component {
         isOpen: false,
       });
       if (this.props.updateStatusBar) {
-        if (IS_ANDROID) {
+        if (IS_ANDROID && updateStatusBar) {
           StatusBar.setBackgroundColor(this.props.inactiveStatusBarBackgroundColor, true);
         }
         StatusBar.setBarStyle(this.props.inactiveStatusBarStyle, true);
